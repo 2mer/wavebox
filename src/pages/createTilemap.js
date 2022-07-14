@@ -1,21 +1,39 @@
-import { Container } from 'pixi.js';
-import PixiTilemap from '../components/WaveCanvas/PixiTilemap';
-import MatrixFormation2D from '../logic/data/MatrixFormation2D';
-import TiledMap from '../logic/TiledMap2D';
+import { Matrix2D } from '@sgty/tsunami';
+import { Graphics } from 'pixi.js';
 import TileRegistry from '../logic/TileRegistry';
-import PixiTile from './PixiTile';
+import PixiTile from '../logic/tiles/PixiTile';
 
-export default function createTilemap() {
-	const tileMap = new TiledMap(
-		new MatrixFormation2D(100, 100).fill(
-			(x, y) => new PixiTile({ x, y }, TileRegistry)
-		)
-	);
+export default function createTilemap({ container, debug = true, size = 8 }) {
+	const tileMap = new Matrix2D({
+		width: 100,
+		height: 100,
+		createTile: (position) => {
+			const tile = new PixiTile(position, { container, size });
 
-	const container = new Container();
+			tile.probabilities = [...TileRegistry];
 
-	const pixiTilemap = new PixiTilemap({ tileMap, container, size: 8 });
-	window.tileMap = pixiTilemap;
+			return tile;
+		},
+		probabilities: TileRegistry,
+	});
 
-	return pixiTilemap;
+	if (debug) {
+		const g = new Graphics();
+
+		const lineSize = size / 2;
+
+		g.lineStyle({ width: lineSize, alpha: 1, color: 0xed6a5a });
+		g.drawRect(
+			-lineSize / 2,
+			-lineSize / 2,
+			size * tileMap.width + lineSize,
+			size * tileMap.height + lineSize
+		);
+
+		container.addChild(g);
+
+		window.tileMap = tileMap;
+	}
+
+	return tileMap;
 }

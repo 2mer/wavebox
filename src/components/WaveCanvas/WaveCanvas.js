@@ -1,12 +1,13 @@
-import { Application } from 'pixi.js';
-import { useEffect, useRef, useState } from 'react';
+import { Application, Container } from 'pixi.js';
+import { useEffect, useRef } from 'react';
 import loadTextures from './loadTextures';
 import { Viewport } from 'pixi-viewport';
 import { useHotkeys } from '@mantine/hooks';
+import createTilemap from '../../pages/createTilemap';
 
-const WaveCanvas = ({ pixiTilemap }) => {
+const WaveCanvas = () => {
 	const ref = useRef();
-	const tileMap = useRef();
+	const tileMapRef = useRef();
 	const cleanup = useRef();
 	useHotkeys([
 		[
@@ -16,8 +17,9 @@ const WaveCanvas = ({ pixiTilemap }) => {
 					cleanup.current();
 					cleanup.current = null;
 				} else {
-					console.log(pixiTilemap);
-					cleanup.current = pixiTilemap?.collapseAll();
+					cleanup.current = tileMapRef?.current?.collapseAll({
+						step: 10,
+					});
 				}
 			},
 		],
@@ -31,10 +33,15 @@ const WaveCanvas = ({ pixiTilemap }) => {
 			backgroundColor: 0x3a405a,
 		});
 
-		const WORLD_WIDTH =
-			pixiTilemap.size * pixiTilemap.tileMap.formation.bounds[0];
-		const WORLD_HEIGHT =
-			pixiTilemap.size * pixiTilemap.tileMap.formation.bounds[0];
+		const TILE_SIZE = 8;
+
+		const container = new Container();
+
+		const tileMap = createTilemap({ container, size: TILE_SIZE });
+		tileMapRef.current = tileMap;
+
+		const WORLD_WIDTH = TILE_SIZE * tileMap.width;
+		const WORLD_HEIGHT = TILE_SIZE * tileMap.height;
 
 		const viewport = new Viewport({
 			screenWidth: window.innerWidth,
@@ -49,7 +56,7 @@ const WaveCanvas = ({ pixiTilemap }) => {
 
 		app.stage.addChild(viewport);
 
-		viewport.addChild(pixiTilemap.container);
+		viewport.addChild(container);
 
 		viewport.drag().pinch().wheel().decelerate();
 
@@ -58,13 +65,11 @@ const WaveCanvas = ({ pixiTilemap }) => {
 		viewport.moveCenter(WORLD_WIDTH / 2, WORLD_HEIGHT / 2);
 		viewport.fit(WORLD_WIDTH, WORLD_HEIGHT);
 
-		tileMap.current = pixiTilemap;
-
 		return () => {
 			mountEl.removeChild(app.view);
-			pixiTilemap.destroy();
+			tileMap.getItems().forEach((item) => item.destroy());
 		};
-	}, [ref, pixiTilemap]);
+	}, [ref]);
 
 	return (
 		<div
