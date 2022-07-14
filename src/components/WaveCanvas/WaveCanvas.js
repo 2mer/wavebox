@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 import loadTextures from './loadTextures';
 import { Viewport } from 'pixi-viewport';
 import { useHotkeys } from '@mantine/hooks';
-import createTilemap from '../../pages/createTilemap';
+import createTilemap from './createTilemap';
 
 const WaveCanvas = () => {
 	const ref = useRef();

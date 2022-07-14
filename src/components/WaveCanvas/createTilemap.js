@@ -1,7 +1,7 @@
 import { Matrix2D } from '@sgty/tsunami';
 import { Graphics } from 'pixi.js';
-import TileRegistry from '../logic/TileRegistry';
-import PixiTile from '../logic/tiles/PixiTile';
+import TileRegistry from '../../logic/TileRegistry';
+import PixiTile from '../../logic/tiles/PixiTile';
 
 export default function createTilemap({ container, debug = true, size = 8 }) {
 	const tileMap = new Matrix2D({

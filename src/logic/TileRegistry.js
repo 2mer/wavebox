@@ -1,9 +1,9 @@
-import BlankTile from './tiles/impl/BlankTile';
-import CornerTile from './tiles/impl/CornerTile';
-import EndTile from './tiles/impl/EndTile';
-import JunctionTile from './tiles/impl/JunctionTile';
-import LineTile from './tiles/impl/LineTile';
-import TSectionTile from './tiles/impl/TSectionTile';
+import BlankTile from './tiles/probabilities/BlankTile';
+import CornerTile from './tiles/probabilities/CornerTile';
+import EndTile from './tiles/probabilities/EndTile';
+import JunctionTile from './tiles/probabilities/JunctionTile';
+import LineTile from './tiles/probabilities/LineTile';
+import TSectionTile from './tiles/probabilities/TSectionTile';
 import { flatten } from 'lodash';
 
 const palette = [0xe5ffde, 0xed6a5a, 0x9590a8];
