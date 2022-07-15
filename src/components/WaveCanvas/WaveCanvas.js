@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Application, Container } from 'pixi.js';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import loadTextures from './loadTextures';
