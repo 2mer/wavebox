@@ -2066,9 +2066,9 @@
   integrity sha512-WiBSI6JBIhC6LRIsB2Kwh8DsGTlbBU+mLRxJmAe3LjHTdkDpwIbEOZgoXBbZilk/vlfjK8i6nKRAvIRn1XaIMw==
 
 "@sgty/tsunami@^1.0.0":
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/@sgty/tsunami/-/tsunami-1.0.7.tgz#52758189b99cdebb27a83382ae12fde360eaac5f"
-  integrity sha512-td/EtcRDgnnb+jdE2Bg5RuaqJMat/RuhF2z4JcDYyVKEubY0K8iC+Qud5q+xar8LaqC/Ym/tZbghKmaJkhdWPA==
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/@sgty/tsunami/-/tsunami-1.0.10.tgz#b7b04119f026166da8826b157f316f0f3784f469"
+  integrity sha512-pqAiZEvOT8lClPLrYZGhF0GuoeWZITsV8gQ50Fu71YKId33Bxz31P+NEBefzlalssPxY1nkZCPGJSNeaIuXE1g==
   dependencies:
     lodash-es "^4.17.21"
 
@@ -8771,6 +8771,11 @@ symbol-tree@^3.2.4:
   version "3.2.4"
   resolved "https://registry.yarnpkg.com/symbol-tree/-/symbol-tree-3.2.4.tgz#430637d248ba77e078883951fb9aa0eed7c63fa2"
   integrity sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==
+
+tabler-icons-react@^1.52.0:
+  version "1.52.0"
+  resolved "https://registry.yarnpkg.com/tabler-icons-react/-/tabler-icons-react-1.52.0.tgz#c125ecfe497d45e40e55a5f3ad5d7dbcdeb69945"
+  integrity sha512-WLsTMiIS7ERdpOX0xH3fPjL3XLjkLCpxXG0SipV6e4T7TLU2ZhdpBeTnAx4DYw7oM3zPDSphDVfP2MfqgIIfog==
 
 tailwindcss@^3.0.2:
   version "3.1.3"

@@ -5,14 +5,16 @@ import Directions from '../Directions';
 export default class PixiTile extends Tile {
 	size = 40;
 	container;
+	onClick;
 
 	graphics;
 
-	constructor(position, { container, size = 40 }) {
+	constructor(position, { container, size = 40, onClick = (tile) => {} }) {
 		super(position);
 
 		this.container = container;
 		this.size = size;
+		this.onClick = onClick;
 	}
 
 	collapse(ctx) {
@@ -89,7 +91,12 @@ export default class PixiTile extends Tile {
 		this.graphics.y = this.position.y * this.size + 0.5 * this.size;
 
 		this.graphics.interactive = true;
-		this.graphics.on('pointerdown', () => console.log(this));
+		this.graphics.on('pointertap', (e) => {
+			if (e.data.button === 2) {
+				this.onClick(this);
+				e.data.originalEvent.preventDefault();
+			}
+		});
 	}
 
 	destroy() {
